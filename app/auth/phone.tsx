@@ -44,24 +44,19 @@ export default function PhoneScreen() {
   const handleNext = () => {
     const rawDigits = phoneNumberInput.replace(/\D/g, '');
     if (rawDigits.length < 6) {
-      Alert.alert('Invalid number', 'Please enter a valid phone number.');
+      if (Platform.OS === 'web') {
+        window.alert('Please enter a valid phone number.');
+      } else {
+        Alert.alert('Invalid number', 'Please enter a valid phone number.');
+      }
       return;
     }
 
     const fullPhone = `${selectedCountry.code} ${phoneNumberInput.trim()}`;
     setPhoneNumber(fullPhone);
 
-    Alert.alert(
-      'Verify number',
-      `We will verify the phone number:\n\n${fullPhone}\n\nIs this OK, or would you like to edit the number?`,
-      [
-        { text: 'Edit', style: 'cancel' },
-        {
-          text: 'OK',
-          onPress: () => router.push('/auth/otp'),
-        },
-      ]
-    );
+    // Smooth instant transition to OTP screen (compatible with both Web and Native)
+    router.push('/auth/otp');
   };
 
   return (
