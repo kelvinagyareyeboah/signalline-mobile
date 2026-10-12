@@ -6,12 +6,12 @@ import { ChatMessage, Contact } from '../types';
 
 class SocketService {
   private socket: Socket | null = null;
-  private serverUrl: string = 'http://localhost:4000';
+  private serverUrl: string = 'https://signalline-mobile.onrender.com';
   private pingInterval: ReturnType<typeof setInterval> | null = null;
   private currentRtt: number = 0;
   private isSimulatedOffline: boolean = false;
 
-  public initialize(serverUrl: string = 'http://localhost:4000') {
+  public initialize(serverUrl: string = 'https://signalline-mobile.onrender.com') {
     this.serverUrl = serverUrl;
     if (this.socket) {
       this.socket.disconnect();

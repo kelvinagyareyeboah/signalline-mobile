@@ -212,8 +212,9 @@ export const useChatStore = create<ChatState>((set, get) => ({
         set({ pendingOutboxCount: count });
       });
 
-      // 5. Connect Socket service to backend
-      socketService.initialize('http://localhost:4000');
+      // 5. Connect Socket service to live cloud backend
+      const liveUrl = 'https://signalline-mobile.onrender.com';
+      socketService.initialize(liveUrl);
 
       set({ isStorageInitialized: true });
       console.log('[Store] SQLite store & outbox subscriber fully initialized.');

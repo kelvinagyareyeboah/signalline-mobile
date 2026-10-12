@@ -29,7 +29,7 @@ export const useSettingsStore = create<SettingsState>((set, get) => ({
   },
   defaultLocationDuration: 60, // 1 hour
   defaultLocationAccuracy: 'balanced',
-  serverUrl: 'wss://socket.signalline.app',
+  serverUrl: 'https://signalline-mobile.onrender.com',
   isHydrated: false,
 
   setNotificationCategory: async (category, value) => {

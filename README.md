@@ -11,6 +11,7 @@
 * 📦 **Offline-First SQLite Sync Engine**: Embedded WAL-mode SQLite database operating under the **Outbox Pattern**. Messages are instantly rendered optimistically and sync automatically with **exponential backoff + jitter** when reconnected.
 * 🛰️ **2D Kalman Filter GPS Smoothing**: Kinematic discrete-time state estimator ($[x, y, v_x, v_y]^T$) that mitigates mobile GPS sensor noise, eliminating marker teleportation on interactive maps.
 * ⚡ **High-Throughput Spatial Fan-out Backend**: Dedicated Node.js & TypeScript real-time server with an in-memory **Spatial Grid Index** mirroring Redis `GEOSEARCH` to broadcast live coordinates without $O(N^2)$ fanout bottleneck.
+* 🌐 **Live Cloud Deployment**: Production WebSocket gateway deployed 24/7 on Render at [`https://signalline-mobile.onrender.com`](https://signalline-mobile.onrender.com).
 * 🧪 **Automated Algorithmic Tests**: Unit tests covering Kalman variance convergence and spatial radius proximity queries running in <300ms.
 
 ---
