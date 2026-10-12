@@ -25,8 +25,8 @@ const THEME_KEY = '@signalline_theme_preference';
 
 const DEFAULT_USER: UserProfile = {
   id: 'user_self',
-  name: 'Alex Rivera',
-  handle: '@alex.rivera',
+  name: 'Kelvin Agyare',
+  handle: '@kelvin.agyare',
   status: 'online',
   sharingLocation: false,
 };

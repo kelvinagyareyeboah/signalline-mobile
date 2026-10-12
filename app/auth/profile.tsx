@@ -24,9 +24,22 @@ export default function ProfileSetupScreen() {
   const user = useUserStore((state) => state.user);
   const completeProfileSetup = useUserStore((state) => state.completeProfileSetup);
 
-  const [name, setName] = useState(user.name || '');
-  const [handle, setHandle] = useState(user.handle ? user.handle.replace('@', '') : 'alex.rivera');
+  const [name, setName] = useState('');
+  const [handle, setHandle] = useState('');
+  const [hasCustomHandle, setHasCustomHandle] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleNameChange = (val: string) => {
+    setName(val);
+    if (!hasCustomHandle) {
+      const generated = val
+        .trimStart()
+        .toLowerCase()
+        .replace(/\s+/g, '.')
+        .replace(/[^a-z0-9.]/g, '');
+      setHandle(generated);
+    }
+  };
 
   const handleFinish = async () => {
     if (!name.trim()) {
@@ -35,7 +48,8 @@ export default function ProfileSetupScreen() {
     }
 
     setIsSubmitting(true);
-    await completeProfileSetup(name.trim(), handle.trim());
+    const finalHandle = handle.trim() || name.trim().toLowerCase().replace(/\s+/g, '.').replace(/[^a-z0-9.]/g, '');
+    await completeProfileSetup(name.trim(), finalHandle);
     setIsSubmitting(false);
 
     // Navigate straight to the main WhatsApp-style chats tab
@@ -77,7 +91,7 @@ export default function ProfileSetupScreen() {
                 placeholder="Type your name here"
                 placeholderTextColor={colors.textMuted}
                 value={name}
-                onChangeText={setName}
+                onChangeText={handleNameChange}
                 maxLength={30}
               />
               <FontAwesome name="smile-o" size={20} color={colors.textSecondary} />
@@ -96,7 +110,21 @@ export default function ProfileSetupScreen() {
                 placeholder="username"
                 placeholderTextColor={colors.textMuted}
                 value={handle}
-                onChangeText={(val) => setHandle(val.toLowerCase().replace(/\s/g, ''))}
+                onChangeText={(val) => {
+                  const cleanVal = val.toLowerCase().replace(/[^a-z0-9._]/g, '');
+                  if (cleanVal.length === 0) {
+                    setHasCustomHandle(false);
+                    const generated = name
+                      .trimStart()
+                      .toLowerCase()
+                      .replace(/\s+/g, '.')
+                      .replace(/[^a-z0-9.]/g, '');
+                    setHandle(generated);
+                  } else {
+                    setHasCustomHandle(true);
+                    setHandle(cleanVal);
+                  }
+                }}
                 autoCapitalize="none"
                 maxLength={20}
               />
