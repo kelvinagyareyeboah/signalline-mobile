@@ -1,0 +1,61 @@
+// WhatsApp-Inspired Color Palette (Clean, Professional, High Contrast)
+const whatsappGreen = '#00A884';
+const whatsappGreenDark = '#005C4B';
+const whatsappGreenLight = '#D9FDD3';
+const whatsappBlueTick = '#53BDEB';
+const onlineGreen = '#25D366';
+
+export default {
+  light: {
+    text: '#111B21',
+    textSecondary: '#667781',
+    textMuted: '#8696A0',
+    background: '#EFEAE2',
+    surface: '#FFFFFF',
+    surfaceSubtle: '#F0F2F5',
+    border: '#E9EDEF',
+    tint: whatsappGreen,
+    tabIconDefault: '#8696A0',
+    tabIconSelected: whatsappGreen,
+    accent: whatsappGreen,
+    primary: whatsappGreen,
+    primaryLight: '#E7FCE3',
+    online: onlineGreen,
+    offline: '#8696A0',
+    away: '#F59E0B',
+    danger: '#EA0038',
+    bubbleSelf: whatsappGreenLight,
+    bubbleSelfText: '#111B21',
+    bubbleOther: '#FFFFFF',
+    bubbleOtherText: '#111B21',
+    card: '#FFFFFF',
+    inputBg: '#FFFFFF',
+    blueTick: whatsappBlueTick,
+  },
+  dark: {
+    text: '#E9EDEF',
+    textSecondary: '#8696A0',
+    textMuted: '#667781',
+    background: '#0B141A',
+    surface: '#111B21',
+    surfaceSubtle: '#202C33',
+    border: '#222D34',
+    tint: whatsappGreen,
+    tabIconDefault: '#8696A0',
+    tabIconSelected: whatsappGreen,
+    accent: whatsappGreen,
+    primary: whatsappGreen,
+    primaryLight: 'rgba(0, 168, 132, 0.15)',
+    online: onlineGreen,
+    offline: '#667781',
+    away: '#F59E0B',
+    danger: '#F15C6D',
+    bubbleSelf: whatsappGreenDark,
+    bubbleSelfText: '#E9EDEF',
+    bubbleOther: '#202C33',
+    bubbleOtherText: '#E9EDEF',
+    card: '#111B21',
+    inputBg: '#2A3942',
+    blueTick: whatsappBlueTick,
+  },
+};
