@@ -49,7 +49,7 @@ export default function SettingsScreen() {
   };
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]} edges={['bottom']}>
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         {/* WhatsApp-Style Profile Header */}
         <Pressable
@@ -244,7 +244,7 @@ export default function SettingsScreen() {
           <Text style={[styles.logoutText, { color: colors.danger }]}>Log Out</Text>
         </Pressable>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 }
 

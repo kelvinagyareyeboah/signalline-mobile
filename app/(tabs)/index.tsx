@@ -55,7 +55,7 @@ export default function ChatsScreen() {
   };
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]} edges={['bottom']}>
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
       {/* Network banner only when offline */}
       <SocketBanner />
 
@@ -137,7 +137,7 @@ export default function ChatsScreen() {
         onPress={() => router.push('/new-chat')}>
         <FontAwesome name="comment" size={20} color="#FFFFFF" />
       </Pressable>
-    </SafeAreaView>
+    </View>
   );
 }
 

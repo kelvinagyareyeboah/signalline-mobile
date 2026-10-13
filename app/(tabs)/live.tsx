@@ -37,7 +37,7 @@ export default function LiveScreen() {
   };
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]} edges={['bottom']}>
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
       {/* Map Section */}
       <View style={styles.mapContainer}>
         <MapViewComponent
@@ -65,7 +65,17 @@ export default function LiveScreen() {
             <View style={styles.overlayActions}>
               <Pressable
                 style={[styles.overlayActionBtn, { backgroundColor: colors.accent }]}
-                onPress={() => router.push({ pathname: '/chat/[id]', params: { id: 'conv_sarah' } })}>
+                onPress={() => {
+                  const convId =
+                    selectedContact.id === 'contact_sarah'
+                      ? 'conv_sarah'
+                      : selectedContact.id === 'contact_marcus'
+                      ? 'conv_marcus'
+                      : selectedContact.id === 'contact_elena'
+                      ? 'conv_elena'
+                      : 'conv_kofi';
+                  router.push({ pathname: '/chat/[id]', params: { id: convId } });
+                }}>
                 <FontAwesome name="comment" size={13} color="#FFFFFF" />
                 <Text style={styles.overlayActionText}>Message</Text>
               </Pressable>
@@ -184,7 +194,7 @@ export default function LiveScreen() {
           </View>
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -193,8 +203,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   mapContainer: {
-    height: '46%',
+    height: 350,
+    maxHeight: '48%',
+    minHeight: 280,
     position: 'relative',
+    overflow: 'hidden',
   },
   overlayCard: {
     position: 'absolute',

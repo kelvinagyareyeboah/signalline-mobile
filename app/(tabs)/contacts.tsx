@@ -34,7 +34,7 @@ export default function ContactsScreen() {
   };
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]} edges={['bottom']}>
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
       {/* WhatsApp Search Bar */}
       <View style={[styles.searchContainer, { backgroundColor: colors.surfaceSubtle }]}>
         <FontAwesome name="search" size={14} color={colors.textSecondary} />
@@ -81,7 +81,7 @@ export default function ContactsScreen() {
           </Pressable>
         )}
       />
-    </SafeAreaView>
+    </View>
   );
 }
 

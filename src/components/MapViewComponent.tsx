@@ -36,10 +36,10 @@ export const MapViewComponent: React.FC<MapViewComponentProps> = ({
   const colors = Colors[colorScheme];
 
   const defaultRegion = {
-    latitude: myLocation?.latitude || 37.7749,
-    longitude: myLocation?.longitude || -122.4194,
-    latitudeDelta: 0.05,
-    longitudeDelta: 0.05,
+    latitude: myLocation?.latitude || 5.6037,
+    longitude: myLocation?.longitude || -0.1870,
+    latitudeDelta: 0.08,
+    longitudeDelta: 0.08,
   };
 
   // If react-native-maps is available on native platform

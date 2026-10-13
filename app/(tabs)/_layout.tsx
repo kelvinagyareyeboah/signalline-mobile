@@ -1,7 +1,8 @@
 import React from 'react';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Tabs } from 'expo-router';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Platform } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Colors from '../../constants/Colors';
 import { useColorScheme } from '@/components/useColorScheme';
 import { useChatStore } from '../../src/stores/useChatStore';
@@ -16,10 +17,16 @@ function TabBarIcon(props: {
 export default function TabLayout() {
   const colorScheme = useColorScheme() ?? 'dark';
   const colors = Colors[colorScheme];
+  const insets = useSafeAreaInsets();
 
   // Total unread messages count
   const conversations = useChatStore((state) => state.conversations);
   const totalUnread = conversations.reduce((acc, c) => acc + (c.unreadCount || 0), 0);
+
+  const isWeb = Platform.OS === 'web';
+  // Compute safe bottom padding to lift tab bar above mobile gesture pills & browser bars
+  const bottomInset = Math.max(insets.bottom, isWeb ? 16 : 8);
+  const tabHeight = 54 + bottomInset;
 
   return (
     <Tabs
@@ -29,13 +36,30 @@ export default function TabLayout() {
         tabBarStyle: {
           backgroundColor: colors.surface,
           borderTopColor: colors.border,
-          height: 60,
-          paddingBottom: 8,
-          paddingTop: 6,
+          borderTopWidth: StyleSheet.hairlineWidth,
+          height: tabHeight,
+          paddingBottom: bottomInset,
+          paddingTop: 8,
+          elevation: 8,
+          shadowColor: '#000',
+          shadowOffset: { width: 0, height: -2 },
+          shadowOpacity: 0.1,
+          shadowRadius: 4,
+          ...(isWeb
+            ? {
+                // Ensure safe area padding on mobile Safari and Chrome PWA
+                paddingBottom: `max(${bottomInset}px, env(safe-area-inset-bottom, 16px))` as any,
+                height: `calc(54px + max(${bottomInset}px, env(safe-area-inset-bottom, 16px)))` as any,
+              }
+            : {}),
+        },
+        tabBarItemStyle: {
+          paddingVertical: 2,
         },
         tabBarLabelStyle: {
           fontSize: 11,
           fontWeight: '700',
+          marginTop: 2,
         },
         headerStyle: {
           backgroundColor: colors.surface,
